@@ -1,8 +1,12 @@
+// main.dart
+import 'dart:async'; // FOR StreamSubscription
 import 'package:flutter/material.dart';
-// Ensure this import path matches your new plugin name!
-import 'package:body_capture_plugin/body_capture_plugin.dart';
+import 'package:flutter/services.dart'; // For MethodChannel, EventChannel, PlatformViews
+import 'package:flutter/foundation.dart'; // For TargetPlatform checks
+import 'package:flutter/rendering.dart'; // For UiKitView
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter binding is initialized
   runApp(const MyApp());
 }
 
@@ -29,8 +33,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Instantiate your plugin. This will set up the EventChannel listener.
-  final BodyCapturePlugin _bodyCapturePlugin = BodyCapturePlugin();
+  // Define your MethodChannel and EventChannel directly with the exact names used in Swift
+  static const MethodChannel _methodChannel = MethodChannel('com.yourcompany.bodyscan/bodyCaptureMethod');
+  static const EventChannel _eventChannel = EventChannel('com.yourcompany.bodyscan/bodyCaptureEvents');
 
   String _statusMessage = "Ready to scan.";
   String _errorMessage = "";
@@ -38,42 +43,53 @@ class _HomePageState extends State<HomePage> {
   double _progress = 0.0;
   bool _isScanning = false;
 
+  // Stream subscriptions to manage lifecycle
+  late StreamSubscription<dynamic> _eventSubscription;
+
   @override
   void initState() {
     super.initState();
-    // Listen to the streams for updates from the native side
-    _bodyCapturePlugin.scanProgress.listen((progress) {
-      setState(() {
-        _progress = progress;
-      });
-    });
+    _listenToNativeEvents();
+  }
 
-    _bodyCapturePlugin.scanStatus.listen((status) {
+  void _listenToNativeEvents() {
+    // Listen to all events from the single EventChannel
+    _eventSubscription = _eventChannel.receiveBroadcastStream().listen((event) {
+      if (event is Map) {
+        if (event.containsKey('status')) {
+          setState(() {
+            _statusMessage = event['status'] as String;
+          });
+        } else if (event.containsKey('progress')) {
+          setState(() {
+            _progress = (event['progress'] as num).toDouble();
+          });
+        } else if (event.containsKey('usdzExportPath')) {
+          setState(() {
+            _usdzPath = event['usdzExportPath'] as String?;
+            _isScanning = false; // Scan finished
+            _statusMessage = "Scan completed! USDZ saved.";
+          });
+        } else if (event.containsKey('error')) {
+          setState(() {
+            _errorMessage = "Error: ${event['error']}";
+            _isScanning = false; // Scan failed
+            _statusMessage = "Scan failed.";
+          });
+        }
+      }
+    }, onError: (error) {
       setState(() {
-        _statusMessage = status;
-      });
-    });
-
-    _bodyCapturePlugin.usdzExportPath.listen((path) {
-      setState(() {
-        _usdzPath = path;
-        _isScanning = false; // Scan finished
-        _statusMessage = "Scan completed! USDZ saved.";
-      });
-    });
-
-    _bodyCapturePlugin.scanError.listen((error) {
-      setState(() {
-        _errorMessage = "Error: $error";
-        _isScanning = false; // Scan failed
-        _statusMessage = "Scan failed.";
+        _errorMessage = "Stream Error: ${error.message}";
+        _isScanning = false;
+        _statusMessage = "Scan stream error.";
       });
     });
   }
 
   @override
   void dispose() {
-    _bodyCapturePlugin.dispose(); // Clean up streams
+    _eventSubscription.cancel(); // Cancel the single stream subscription
     super.dispose();
   }
 
@@ -86,23 +102,14 @@ class _HomePageState extends State<HomePage> {
       _progress = 0.0;
     });
 
-    // Call the native method to start the scan
-    final String? path = await _bodyCapturePlugin.startObjectCaptureScan();
-    if (path != null) {
+    try {
+      await _methodChannel.invokeMethod('startBodyCaptureScan'); // Call native method
+      // Updates will come via the EventChannel listeners
+    } on PlatformException catch (e) {
       setState(() {
-        _usdzPath = path;
+        _errorMessage = "Failed to start scan: '${e.message}'";
         _isScanning = false;
-        _statusMessage = "Scan completed! USDZ saved at: $path";
-      });
-    } else {
-      // If path is null, it means there was an error or it was cancelled
-      // The error stream will handle setting _errorMessage
-      setState(() {
-        _isScanning = false;
-        if (_errorMessage.isEmpty) { // If no specific error from stream, set a generic one
-          _errorMessage = "Scan did not complete or was cancelled.";
-          _statusMessage = "Scan aborted.";
-        }
+        _statusMessage = "Scan failed.";
       });
     }
   }
@@ -113,8 +120,17 @@ class _HomePageState extends State<HomePage> {
       _statusMessage = "Scan stopped.";
       _errorMessage = ""; // Clear any previous errors on stop
     });
-    await _bodyCapturePlugin.stopObjectCaptureScan();
+    try {
+      await _methodChannel.invokeMethod('stopBodyCaptureScan'); // Call native method
+    } on PlatformException catch (e) {
+      setState(() {
+        _errorMessage = "Failed to stop scan: '${e.message}'";
+      });
+    }
   }
+
+  // Define the view type string, MUST match the ID registered in AppDelegate.swift
+  static const String _viewType = 'com.yourcompany.bodyscan/lidarScanView';
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +144,20 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              // Your native LidarScanView integrated into the Flutter widget tree
+              if (defaultTargetPlatform == TargetPlatform.iOS)
+                Expanded(
+                  child: UiKitView(
+                    viewType: _viewType,
+                    layoutDirection: TextDirection.ltr,
+                    creationParams: const <String, dynamic>{}, // Optional: pass parameters
+                    creationParamsCodec: const StandardMessageCodec(),
+                  ),
+                )
+              else if (defaultTargetPlatform == TargetPlatform.android)
+              // Placeholder for Android: You'll need to implement an AndroidView for Android
+                const Text('Android Platform View not implemented yet'),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _isScanning ? null : _startScan,
                 style: ElevatedButton.styleFrom(

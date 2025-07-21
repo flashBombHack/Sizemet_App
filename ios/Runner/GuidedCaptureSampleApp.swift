@@ -7,7 +7,6 @@ The single entry point of the app.
 
 import SwiftUI
 
-@main
 struct GuidedCaptureSampleApp: App {
     static let subsystem: String = "com.example.apple-samplecode.guided-capture-sample"
 

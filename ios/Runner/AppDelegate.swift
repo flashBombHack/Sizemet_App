@@ -1,5 +1,6 @@
-import UIKit
+// AppDelegate.swift
 import Flutter
+import UIKit
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -8,15 +9,20 @@ import Flutter
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
-      let messenger = self.window?.rootViewController as! FlutterBinaryMessenger
 
-          // Register the LidarScanViewFactory with the Flutter engine.
-          // The string "com.yourcompany.bodyscan/LidarScanView" is the unique viewType identifier.
-          // This MUST match the viewType you will use in your Dart code.
-          self.registrar(forPlugin: "LidarScanViewFactory")!.register(
-              LidarScanViewFactory(messenger: messenger),
-              withId: "com.yourcompany.bodyscan/LidarScanView"
-          )
-      return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    // Get the registrar for your plugin (use a unique identifier here)
+    if let registrar = self.registrar(forPlugin: "LidarScanViewPlugin") {
+
+        // Instantiate your factory
+        let factory = LidarScanViewFactory(messenger: registrar.messenger())
+
+        // Register the *factory* instance with the Flutter engine
+        // "com.yourcompany.bodyscan/lidarScanView" is the unique view type ID used in Dart
+        registrar.register(factory, withId: "com.yourcompany.bodyscan/lidarScanView")
+    } else {
+        print("Error: Could not get registrar for plugin 'LidarScanViewPlugin'")
+    }
+
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }

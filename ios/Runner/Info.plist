@@ -45,5 +45,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Needs permision to be able to use Lidar and scan</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>for saving 3D objects</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>For voice over interactive</string>
 </dict>
 </plist>

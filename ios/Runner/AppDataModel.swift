@@ -253,7 +253,7 @@ extension AppDataModel {
         state = .reconstructing
     }
 
-    private func reset() {
+    internal func reset() {
         logger.info("reset() called...")
         photogrammetrySession = nil
         objectCaptureSession = nil

@@ -54,7 +54,8 @@
 		B3A857262E2CF095003DB82F /* ScanPasses-iPhone-FixedHeight-2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B3A857162E2CF095003DB82F /* ScanPasses-iPhone-FixedHeight-2.mp4 */; };
 		B3A857272E2CF095003DB82F /* ScanTutorial-iPad-Area.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B3A8571A2E2CF095003DB82F /* ScanTutorial-iPad-Area.mp4 */; };
 		B3A857282E2CF095003DB82F /* ScanPasses-iPhone-FixedHeight-3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B3A857172E2CF095003DB82F /* ScanPasses-iPhone-FixedHeight-3.mp4 */; };
-		B3A8572A2E2CF22A003DB82F /* LidarScanViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A857292E2CF218003DB82F /* LidarScanViewFactory.swift */; };
+		B3ADBC042E2D6E95004F9342 /* LidarScanViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A857292E2CF218003DB82F /* LidarScanViewFactory.swift */; };
+		B3ADBC062E2D8DE4004F9342 /* LidarScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ADBC052E2D8DD4004F9342 /* LidarScanView.swift */; };
 		F06443217A96ED4E77B18823 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D2DFF30244CB380374AF848 /* Pods_RunnerTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +143,7 @@
 		B3A8571A2E2CF095003DB82F /* ScanTutorial-iPad-Area.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScanTutorial-iPad-Area.mp4"; sourceTree = "<group>"; };
 		B3A8571B2E2CF095003DB82F /* ScanTutorial-iPhone-Area.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ScanTutorial-iPhone-Area.mp4"; sourceTree = "<group>"; };
 		B3A857292E2CF218003DB82F /* LidarScanViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LidarScanViewFactory.swift; sourceTree = "<group>"; };
+		B3ADBC052E2D8DD4004F9342 /* LidarScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LidarScanView.swift; sourceTree = "<group>"; };
 		D0D946B70DFF31C91B43926A /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		D660DA7D97E06E33B83783A3 /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E67F1391BA749C82A3E5D5F2 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				B3ADBC052E2D8DD4004F9342 /* LidarScanView.swift */,
 				B3A857292E2CF218003DB82F /* LidarScanViewFactory.swift */,
 				B3A8571C2E2CF095003DB82F /* Resources */,
 				B3A856BA2E2CEEE2003DB82F /* TimedMessageList.swift */,
@@ -333,7 +336,6 @@
 				97C146EC1CF9000F007C117D /* Resources */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
-				FEBD69C49A956F38A911D630 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -351,7 +353,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 1510;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					331C8080294A63A400263BE5 = {
@@ -492,23 +494,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FEBD69C49A956F38A911D630 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -524,6 +509,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3ADBC062E2D8DE4004F9342 /* LidarScanView.swift in Sources */,
+				B3ADBC042E2D6E95004F9342 /* LidarScanViewFactory.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				B3A856B12E2CEE6C003DB82F /* FeedbackMessages.swift in Sources */,
 				B3A856B72E2CEEA2003DB82F /* OnboardingButtonView+LocalizedString.swift in Sources */,
@@ -533,7 +520,6 @@
 				B3A856CF2E2CEEE2003DB82F /* ModelView.swift in Sources */,
 				B3A856D02E2CEEE2003DB82F /* PlayerView.swift in Sources */,
 				B3A856D12E2CEEE2003DB82F /* CaptureOverlayView.swift in Sources */,
-				B3A8572A2E2CF22A003DB82F /* LidarScanViewFactory.swift in Sources */,
 				B3A856D22E2CEEE2003DB82F /* ContentView.swift in Sources */,
 				B3A856D32E2CEEE2003DB82F /* FeedbackView.swift in Sources */,
 				B3A856D42E2CEEE2003DB82F /* UntilProcessingCompleteFilter.swift in Sources */,
@@ -589,6 +575,7 @@
 /* Begin XCBuildConfiguration section */
 		249021D3217E4FDB00AE95B9 /* Profile */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0D946B70DFF31C91B43926A /* Pods-Runner.profile.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -623,6 +610,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FLUTTER_ROOT = /Users/hena/Downloads/flutter;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -649,6 +637,8 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = QH8QYB75N7;
 				ENABLE_BITCODE = NO;
+				FLUTTER_APPLICATION_PATH = /Users/hena/Documents/Sizemet_App;
+				FLUTTER_BUILD_DIR = "${SRCROOT}/ .symlinks/flutter";
 				FLUTTER_ROOT = /Users/hena/Downloads/flutter;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -725,6 +715,7 @@
 		};
 		97C147031CF9000F007C117D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E67F1391BA749C82A3E5D5F2 /* Pods-Runner.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -759,6 +750,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FLUTTER_ROOT = /Users/hena/Downloads/flutter;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -783,6 +775,7 @@
 		};
 		97C147041CF9000F007C117D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72504C71B0B986EA48EC1901 /* Pods-Runner.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -817,6 +810,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FLUTTER_ROOT = /Users/hena/Downloads/flutter;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -845,6 +839,8 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = QH8QYB75N7;
 				ENABLE_BITCODE = NO;
+				FLUTTER_APPLICATION_PATH = /Users/hena/Documents/Sizemet_App;
+				FLUTTER_BUILD_DIR = "${SRCROOT}/ .symlinks/flutter";
 				FLUTTER_ROOT = /Users/hena/Downloads/flutter;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -879,6 +875,8 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = QH8QYB75N7;
 				ENABLE_BITCODE = NO;
+				FLUTTER_APPLICATION_PATH = /Users/hena/Documents/Sizemet_App;
+				FLUTTER_BUILD_DIR = "${SRCROOT}/ .symlinks/flutter";
 				FLUTTER_ROOT = /Users/hena/Downloads/flutter;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
