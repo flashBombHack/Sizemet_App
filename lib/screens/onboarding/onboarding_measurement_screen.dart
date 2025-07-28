@@ -14,7 +14,7 @@ class OnboardingMeasurementScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 32),
-            // Card with measurement info (SVG placeholder)
+            // Card with measurement info (SVG placeholder image)
             Center(
               child: Container(
                 width: 320,
