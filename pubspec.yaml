@@ -9,6 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   go_router: ^13.2.0
+  shared_preferences: ^2.2.2
 
   cupertino_icons: ^1.0.6
   google_fonts: ^6.1.0
