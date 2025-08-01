@@ -3,58 +3,59 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OnboardingResultScreen extends StatelessWidget {
-  final VoidCallback onSignUp;
-  final VoidCallback onSignIn;
+  final VoidCallback onSignUp; // This callback is now unused directly, but kept for signature
+  final VoidCallback onSignIn; // This callback is now unused directly, but kept for signature
   const OnboardingResultScreen({super.key, required this.onSignUp, required this.onSignIn});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 32),
-            // Card with size result (SVG placeholder)
-            Center(
-              child: Container(
-                width: 320,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFF3B2FEA), Color(0xFFEA2FEA)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 16,
-                      offset: Offset(0, 8),
-                    ),
-                  ],
-                ),
-                child: SvgPicture.asset(
-                  'assets/images/size_result_card.svg',
-                  width: 280,
-                  height: 180,
-                  fit: BoxFit.contain,
+      backgroundColor: const Color(0xFFFBFBFD), // Updated background color
+      body: Column(
+        children: [
+          Expanded(
+            child: SvgPicture.asset(
+              'assets/images/size_result_card.svg',
+              fit: BoxFit.fitWidth,
+              width: double.infinity,
+              height: double.infinity,
+              placeholderBuilder: (BuildContext context) => Container(
+                color: Colors.grey[200],
+                child: const Center(
+                  child: CircularProgressIndicator(),
                 ),
               ),
             ),
-            const SizedBox(height: 32),
-            Padding(
+          ),
+          SafeArea(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 children: [
-                  Text(
-                    'Welcome To Sizemet',
+                  RichText(
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                    text: TextSpan(
+                      style: GoogleFonts.nunitoSans(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        const TextSpan(text: 'Welcome To '),
+                        TextSpan(
+                          text: 'Sizemet',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                            foreground: Paint()..shader = const LinearGradient(
+                              colors: <Color>[
+                                Color(0xFF2323FF),
+                                Color(0xFF151599),
+                              ],
+                            ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -70,14 +71,18 @@ class OnboardingResultScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: onSignUp,
+                      onPressed: () {
+                        // Changed to pushNamed to allow back navigation
+                        Navigator.pushNamed(context, '/signup');
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF3B2FEA),
+                        backgroundColor: const Color(0xFF2323FF),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32),
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 18),
                         textStyle: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
+                        foregroundColor: Colors.white,
                       ),
                       child: const Text('Sign up'),
                     ),
@@ -86,10 +91,13 @@ class OnboardingResultScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                      onPressed: onSignIn,
+                      onPressed: () {
+                        // Changed to pushNamed to allow back navigation
+                        Navigator.pushNamed(context, '/signin');
+                      },
                       style: OutlinedButton.styleFrom(
-                        foregroundColor: const Color(0xFF3B2FEA),
-                        side: const BorderSide(color: Color(0xFF3B2FEA), width: 2),
+                        foregroundColor: const Color(0xFF2323FF),
+                        side: const BorderSide(color: Color(0xFF2323FF), width: 2),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32),
                         ),
@@ -103,9 +111,9 @@ class OnboardingResultScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
-} 
+}

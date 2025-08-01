@@ -10,36 +10,25 @@ class OnboardingMeasurementScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 32),
-            // Card with measurement info (SVG placeholder image)
-            Center(
-              child: Container(
-                width: 320,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 16,
-                      offset: Offset(0, 8),
-                    ),
-                  ],
-                ),
-                child: SvgPicture.asset(
-                  'assets/images/measurement_card.svg',
-                  width: 280,
-                  height: 180,
-                  fit: BoxFit.contain,
+      body: Column(
+        children: [
+          // Expanded to allow the SVG to take available space and fill the top/mid section
+          Expanded(
+            child: SvgPicture.asset(
+              'assets/images/measurement_card.svg', // Assuming this SVG contains the full card design
+              fit: BoxFit.fitWidth, // Changed from BoxFit.cover to BoxFit.fitWidth
+              width: double.infinity,
+              height: double.infinity, // This height will be constrained by fitWidth and parent
+              placeholderBuilder: (BuildContext context) => Container(
+                color: Colors.grey[200],
+                child: const Center(
+                  child: CircularProgressIndicator(),
                 ),
               ),
             ),
-            const SizedBox(height: 32),
-            Padding(
+          ),
+          SafeArea(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 children: [
@@ -51,13 +40,21 @@ class OnboardingMeasurementScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
-                      children: const [
-                        TextSpan(text: 'Find Your '),
+                      children: [
+                        const TextSpan(text: 'Find Your'),
                         TextSpan(
-                          text: 'Perfect Fit',
-                          style: TextStyle(color: Color(0xFF3B2FEA)),
+                          text: 'Perfect Fit, Effortlessly',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                            foreground: Paint()..shader = const LinearGradient(
+                              colors: <Color>[
+                                Color(0xFF2323FF),
+                                Color(0xFF151599),
+                              ],
+                            ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                          ),
                         ),
-                        TextSpan(text: ', Effortlessly'),
                       ],
                     ),
                   ),
@@ -76,12 +73,13 @@ class OnboardingMeasurementScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: onNext,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF3B2FEA),
+                        backgroundColor: const Color(0xFF2323FF),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32),
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 18),
                         textStyle: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
+                        foregroundColor: Colors.white,
                       ),
                       child: const Text('Next'),
                     ),
@@ -90,9 +88,9 @@ class OnboardingMeasurementScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
-} 
+}
