@@ -3,9 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../widgets/onboarding_progress_bar.dart';
+import 'positioning_guidance_screen.dart'; // Import the new screen
 
 class ScanningMethodScreen extends StatefulWidget {
-  final VoidCallback onProceed; // Changed to onProceed as it's the last step
+  final VoidCallback onProceed;
   final int currentStep;
   final int totalSteps;
 
@@ -21,7 +22,7 @@ class ScanningMethodScreen extends StatefulWidget {
 }
 
 class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
-  String? _selectedMethod; // Nullable to indicate no selection initially
+  String? _selectedMethod;
   static const String _prefKey = 'onboarding_scanning_method';
 
   @override
@@ -46,7 +47,23 @@ class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
     setState(() {
       _selectedMethod = method;
     });
-    _saveSelectedMethod(method); // Save immediately on selection
+    _saveSelectedMethod(method);
+  }
+
+  // New navigation function to proceed to the next screen
+  void _navigateToNextScreen() {
+    if (_selectedMethod != null) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => PositioningGuidanceScreen(
+            onProceed: widget.onProceed,
+            currentStep: widget.currentStep + 1, // Move to the next step
+            totalSteps: widget.totalSteps,
+            selectedMethod: _selectedMethod!, // Pass the selected method
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -56,7 +73,7 @@ class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFFBFBFD),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFBFBFD),
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
@@ -64,78 +81,72 @@ class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            OnboardingProgressBar(
-              currentStep: widget.currentStep,
-              totalSteps: widget.totalSteps,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Select Scanning Method',
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Pick the method that works best for your situation.',
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 16,
-                      color: Colors.black54,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 32),
-            Expanded(
-              child: Column(
-                children: [
-                  _buildMethodOption(
-                    context,
-                    'Handheld Scanning',
-                    'Have someone help you hold your phone.',
-                    'assets/images/onboarding_steps/male_icon.svg',
-                    'handheld',
-                  ),
-                  const SizedBox(height: 16),
-                  _buildMethodOption(
-                    context,
-                    'Tripod/Stand Setup',
-                    'Place phone on a tripod or stable surface.',
-                    'assets/images/onboarding_steps/male_icon.svg',
-                    'tripod',
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: canProceed ? widget.onProceed : null, // Disable if no selection
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF2323FF),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 18),
-                    textStyle: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
-                    foregroundColor: Colors.white,
-                  ),
-                  child: const Text('Proceed'),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'Select Scanning Method',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 8),
+              Text(
+                'Pick the method that works best for your situation.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 16,
+                  color: Colors.black54,
+                ),
+              ),
+              const SizedBox(height: 10),
+              OnboardingProgressBar(
+                currentStep: widget.currentStep,
+                totalSteps: widget.totalSteps,
+              ),
+              const SizedBox(height: 30),
+              _buildMethodOption(
+                context,
+                'Handheld Scanning',
+                'Have someone help you hold your phone.',
+                'assets/images/onboarding_steps/male_icon.svg',
+                'handheld',
+              ),
+              const SizedBox(height: 16),
+              _buildMethodOption(
+                context,
+                'Tripod/Stand Setup',
+                'Place phone on a tripod or stable surface.',
+                'assets/images/onboarding_steps/male_icon.svg',
+                'tripod',
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: canProceed ? _navigateToNextScreen : null,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF2323FF),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      textStyle: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text('Proceed'),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -147,10 +158,11 @@ class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
     return GestureDetector(
       onTap: () => _handleMethodSelection(value),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 24.0),
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+        padding: const EdgeInsets.symmetric(vertical: 30),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF2323FF).withOpacity(0.1) : Colors.white,
+          color: isSelected ? const Color(0xFF2323FF).withOpacity(0.05) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: isSelected ? const Color(0xFF2323FF) : Colors.grey[300]!,
@@ -164,46 +176,39 @@ class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
             ),
           ],
         ),
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(height: 24),
             SvgPicture.asset(
               iconPath,
-              width: 40,
-              height: 40,
+              width: 80,
+              height: 80,
               colorFilter: ColorFilter.mode(
                 isSelected ? const Color(0xFF2323FF) : Colors.black87,
                 BlendMode.srcIn,
               ),
             ),
-            const SizedBox(width: 24),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: isSelected ? const Color(0xFF2323FF) : Colors.black87,
-                    ),
-                  ),
-                  Text(
-                    subtitle,
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 14,
-                      color: Colors.black54,
-                    ),
-                  ),
-                ],
+            const SizedBox(height: 16),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.nunitoSans(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: isSelected ? const Color(0xFF2323FF) : Colors.black87,
               ),
             ),
-            if (isSelected)
-              const Icon(
-                Icons.check_circle,
-                color: Color(0xFF2323FF),
-                size: 24,
+            const SizedBox(height: 8),
+            Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.nunitoSans(
+                fontSize: 14,
+                color: isSelected ? const Color(0xFF2323FF) : Colors.black54,
               ),
+            ),
+            const SizedBox(height: 24),
           ],
         ),
       ),
