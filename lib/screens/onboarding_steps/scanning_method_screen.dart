@@ -86,26 +86,22 @@ class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Flexible(
-                child: Text(
-                  'Select Scanning Method',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+              Text(
+                'Select Scanning Method',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 8),
-              Flexible(
-                child: Text(
-                  'Pick the method that works best for your situation.',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 16,
-                    color: Colors.black54,
-                  ),
+              Text(
+                'Pick the method that works best for your situation.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 16,
+                  color: Colors.black54,
                 ),
               ),
               const SizedBox(height: 10),
@@ -201,26 +197,22 @@ class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            Flexible(
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: isSelected ? const Color(0xFF2323FF) : Colors.black87,
-                ),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.nunitoSans(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: isSelected ? const Color(0xFF2323FF) : Colors.black87,
               ),
             ),
             const SizedBox(height: 8),
-            Flexible(
-              child: Text(
-                subtitle,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 14,
-                  color: isSelected ? const Color(0xFF2323FF) : Colors.black54,
-                ),
+            Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.nunitoSans(
+                fontSize: 14,
+                color: isSelected ? const Color(0xFF2323FF) : Colors.black54,
               ),
             ),
             const SizedBox(height: 24),

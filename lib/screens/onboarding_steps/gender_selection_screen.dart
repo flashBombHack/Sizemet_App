@@ -72,20 +72,18 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 0),
-                  Flexible(
-                    child: Text(
-                      'Select your gender',
-                      style: GoogleFonts.nunitoSans(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                  Text(
+                    'Select your gender',
+                    style: GoogleFonts.nunitoSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16), // Reduced from 32
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -99,7 +97,7 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
                       'assets/images/onboarding_steps/male_icon.svg',
                       'male',
                     ),
-                    const SizedBox(height: 0),
+                    const SizedBox(height: 16), // Reduced spacing
                     _buildGenderOption(
                       context,
                       'Female',
@@ -111,7 +109,7 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0), // Reduced vertical padding
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -127,11 +125,9 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Flexible(
-                        child: Text(
-                          'Continue',
-                          style: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
-                        ),
+                      Text(
+                        'Continue',
+                        style: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(width: 8),
                       const Icon(Icons.arrow_forward, size: 24),
@@ -148,12 +144,12 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
 
   Widget _buildGenderOption(BuildContext context, String title, String iconPath, String value) {
     final bool isSelected = _selectedGender == value;
-    return Expanded(
+    return Flexible( // Changed from Expanded to Flexible
       child: GestureDetector(
         onTap: () => _handleGenderSelection(value),
         child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-          padding: const EdgeInsets.symmetric(vertical: 24),
+          margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8), // Reduced margins
+          padding: const EdgeInsets.symmetric(vertical: 16), // Reduced padding
           decoration: BoxDecoration(
             color: isSelected ? const Color(0xFF2323FF).withOpacity(0.1) : Colors.white,
             borderRadius: BorderRadius.circular(16),
@@ -174,22 +170,20 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
             children: [
               SvgPicture.asset(
                 iconPath,
-                width: 120, // Larger icon size
-                height: 120,
+                width: 80, // Reduced icon size
+                height: 80,
                 colorFilter: ColorFilter.mode(
                   isSelected ? const Color(0xFF2323FF) : const Color(0xFF374151),
                   BlendMode.srcIn,
                 ),
               ),
-              const SizedBox(height: 16),
-              Flexible(
-                child: Text(
-                  title,
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: isSelected ? const Color(0xFF2323FF) : Colors.black87,
-                  ),
+              const SizedBox(height: 12), // Reduced spacing
+              Text(
+                title,
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 16, // Reduced font size
+                  fontWeight: FontWeight.w600,
+                  color: isSelected ? const Color(0xFF2323FF) : Colors.black87,
                 ),
               ),
             ],

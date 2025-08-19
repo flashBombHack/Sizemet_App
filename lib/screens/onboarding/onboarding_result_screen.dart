@@ -14,9 +14,10 @@ class OnboardingResultScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
+            flex: 3, // Give more space to the image section
             child: SvgPicture.asset(
               'assets/images/size_result_card.svg',
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
               placeholderBuilder: (BuildContext context) => Container(
@@ -27,13 +28,15 @@ class OnboardingResultScreen extends StatelessWidget {
               ),
             ),
           ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Column(
-                children: [
-                  Flexible(
-                    child: RichText(
+          Expanded(
+            flex: 2, // Give less space to the content section
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
                         style: GoogleFonts.nunitoSans(
@@ -59,10 +62,8 @@ class OnboardingResultScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Flexible(
-                    child: Text(
+                    const SizedBox(height: 16),
+                    Text(
                       'Your one-stop solution for finding your perfect fit, shop smarter, look better, feel confident.',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.nunitoSans(
@@ -70,49 +71,48 @@ class OnboardingResultScreen extends StatelessWidget {
                         color: Colors.black54,
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 32),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Changed to pushNamed to allow back navigation
-                        Navigator.pushNamed(context, '/signup');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF2323FF),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32),
+                    const SizedBox(height: 32),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Changed to pushNamed to allow back navigation
+                          Navigator.pushNamed(context, '/signup');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF2323FF),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          textStyle: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
+                          foregroundColor: Colors.white,
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 18),
-                        textStyle: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
-                        foregroundColor: Colors.white,
+                        child: const Text('Sign up'),
                       ),
-                      child: const Text('Sign up'),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton(
-                      onPressed: () {
-                        // Changed to pushNamed to allow back navigation
-                        Navigator.pushNamed(context, '/signin');
-                      },
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: const Color(0xFF2323FF),
-                        side: const BorderSide(color: Color(0xFF2323FF), width: 2),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          // Changed to pushNamed to allow back navigation
+                          Navigator.pushNamed(context, '/signin');
+                        },
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: const Color(0xFF2323FF),
+                          side: const BorderSide(color: Color(0xFF2323FF), width: 2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          textStyle: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 18),
-                        textStyle: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
+                        child: const Text('Sign in'),
                       ),
-                      child: const Text('Sign in'),
                     ),
-                  ),
-                  const SizedBox(height: 32),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

@@ -95,15 +95,13 @@ class _PositioningGuidanceScreenState extends State<PositioningGuidanceScreen> {
               //   totalSteps: widget.totalSteps,
               // ),
               const SizedBox(height: 16),
-              Flexible(
-                child: Text(
-                  'Positioning Guidance',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+              Text(
+                'Positioning Guidance',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 32),
@@ -135,15 +133,13 @@ class _PositioningGuidanceScreenState extends State<PositioningGuidanceScreen> {
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: Flexible(
-                  child: Text(
-                    _guidanceText[widget.selectedMethod]!,
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 14,
-                      color: Colors.black87,
-                    ),
-                    textAlign: TextAlign.center,
+                child: Text(
+                  _guidanceText[widget.selectedMethod]!,
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 14,
+                    color: Colors.black87,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
               const SizedBox(height: 24),
@@ -199,16 +195,14 @@ class _PositioningGuidanceScreenState extends State<PositioningGuidanceScreen> {
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Flexible(
-            child: Text(
-              errorMessage,
-              style: GoogleFonts.nunitoSans(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
-              textAlign: TextAlign.center,
+          child: Text(
+            errorMessage,
+            style: GoogleFonts.nunitoSans(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
       ),

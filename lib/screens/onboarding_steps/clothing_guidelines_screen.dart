@@ -60,24 +60,20 @@ class _ClothingGuidelinesScreenState extends State<ClothingGuidelinesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Flexible(
-                child: Text(
-                  'Measurement Guidelines',
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+              Text(
+                'Measurement Guidelines',
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 8),
-              Flexible(
-                child: Text(
-                  'Please ensure to follow the below requirements',
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 16,
-                    color: Colors.black54,
-                  ),
+              Text(
+                'Please ensure to follow the below requirements',
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 16,
+                  color: Colors.black54,
                 ),
               ),
               const SizedBox(height: 5),
@@ -96,28 +92,24 @@ class _ClothingGuidelinesScreenState extends State<ClothingGuidelinesScreen> {
                     colorFilter: const ColorFilter.mode(Color(0xFF2323FF), BlendMode.srcIn),
                   ),
                   const SizedBox(width: 8),
-                  Flexible(
-                    child: Text(
-                      'Audio guidance: Ensure your volume is turned up.',
-                      style: GoogleFonts.nunitoSans(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
+                  Text(
+                    'Audio guidance: Ensure your volume is turned up.',
+                    style: GoogleFonts.nunitoSans(
+                      fontSize: 14,
+                      color: Colors.grey,
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 32),
               // Moved this text to be part of the main column and not the SingleChildScrollView
-              Flexible(
-                child: Text(
-                  'Wear fitted clothing (not loose or baggy!)',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+              Text(
+                'Wear fitted clothing (not loose or baggy!)',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 16),

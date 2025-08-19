@@ -60,24 +60,20 @@ class _LightingGuidelinesScreenState extends State<LightingGuidelinesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Flexible(
-                child: Text(
-                  'Measurement Guidelines',
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+              Text(
+                'Measurement Guidelines',
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 8),
-              Flexible(
-                child: Text(
-                  'Please ensure to follow the below requirements',
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 16,
-                    color: Colors.black54,
-                  ),
+              Text(
+                'Please ensure to follow the below requirements',
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 16,
+                  color: Colors.black54,
                 ),
               ),
               const SizedBox(height: 16),
@@ -95,27 +91,23 @@ class _LightingGuidelinesScreenState extends State<LightingGuidelinesScreen> {
                     colorFilter: const ColorFilter.mode(Color(0xFF2323FF), BlendMode.srcIn),
                   ),
                   const SizedBox(width: 8),
-                  Flexible(
-                    child: Text(
-                      'Audio guidance: Ensure your volume is turned up.',
-                      style: GoogleFonts.nunitoSans(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
+                  Text(
+                    'Audio guidance: Ensure your volume is turned up.',
+                    style: GoogleFonts.nunitoSans(
+                      fontSize: 14,
+                      color: Colors.grey,
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 32),
-              Flexible(
-                child: Text(
-                  'Ensure proper lighting with no shadows',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
+              Text(
+                'Ensure proper lighting with no shadows',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(height: 16),
