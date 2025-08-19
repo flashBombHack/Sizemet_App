@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LidarScannerScreen extends StatefulWidget {
   const LidarScannerScreen({super.key});
@@ -108,98 +109,166 @@ class _LidarScannerScreenState extends State<LidarScannerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFBFBFD),
       appBar: AppBar(
-        title: const Text('Lidar Scanner'),
+        backgroundColor: const Color(0xFFE3F2FD), // Light blue background
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text(
+          'Scanning in Progress',
+          style: GoogleFonts.nunitoSans(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
+          ),
+        ),
+        centerTitle: true,
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-              if (defaultTargetPlatform == TargetPlatform.iOS)
-                Expanded(
-                  child: UiKitView(
-                    viewType: _viewType,
-                    layoutDirection: TextDirection.ltr,
-                    creationParams: const <String, dynamic>{},
-                    creationParamsCodec: const StandardMessageCodec(),
-                  ),
-                )
-              else if (defaultTargetPlatform == TargetPlatform.android)
-                const Expanded(
-                  child: Center(
-                    child: Text('Android Platform View not implemented yet'),
+      body: Column(
+        children: [
+          // Body Coverage Progress Bar
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            child: Row(
+              children: [
+                Text(
+                  'Body Coverage',
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
                   ),
                 ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: _isScanning ? null : _startScan,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                        textStyle: const TextStyle(fontSize: 16),
-                      ),
-                      child: const Text('Start Body Scan'),
-                    ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: LinearProgressIndicator(
+                    value: _progress,
+                    backgroundColor: Colors.grey[300],
+                    valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF2323FF)),
                   ),
-                  const SizedBox(width: 10),
+                ),
+                const SizedBox(width: 16),
+                Text(
+                  '${(_progress * 100).toStringAsFixed(0)}%',
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          
+          // Full-screen Method Channel View
+          Expanded(
+            child: Container(
+              color: const Color(0xFF424242), // Dark grey background
+              child: Stack(
+                children: [
+                  // Method Channel View (iOS Swift code)
+                  if (defaultTargetPlatform == TargetPlatform.iOS)
+                    UiKitView(
+                      viewType: _viewType,
+                      layoutDirection: TextDirection.ltr,
+                      creationParams: const <String, dynamic>{},
+                      creationParamsCodec: const StandardMessageCodec(),
+                    )
+                  else if (defaultTargetPlatform == TargetPlatform.android)
+                    const Center(
+                      child: Text(
+                        'Android Platform View not implemented yet',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  
+                  // Overlay for scan controls (only show when not scanning)
+                  if (!_isScanning)
+                    Positioned(
+                      top: 20,
+                      right: 20,
+                      child: ElevatedButton(
+                        onPressed: _startScan,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF2323FF),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'Start Scan',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  
+                  // Overlay for stop button (only show when scanning)
                   if (_isScanning)
-                    Expanded(
+                    Positioned(
+                      top: 20,
+                      right: 20,
                       child: ElevatedButton(
                         onPressed: _stopScan,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red,
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                          textStyle: const TextStyle(fontSize: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
-                        child: const Text('Stop Scan'),
+                        child: const Text(
+                          'Stop Scan',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
                 ],
               ),
-              const SizedBox(height: 20),
-              Flexible(
-                child: Text(
-                  'Status:  [${_statusMessage}',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              const SizedBox(height: 10),
-              LinearProgressIndicator(value: _progress),
-              Text(' [${(_progress * 100).toStringAsFixed(1)}%'),
-              const SizedBox(height: 20),
-              if (_errorMessage.isNotEmpty)
-                Flexible(
-                  child: Text(
-                    _errorMessage,
-                    style: const TextStyle(color: Colors.red, fontSize: 14),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              if (_usdzPath != null)
-                Flexible(
-                  child: Column(
-                    children: [
-                      const Text(
-                        'Scan Result (USDZ):',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      SelectableText(
-                        _usdzPath!,
-                        style: const TextStyle(fontSize: 14, color: Colors.blue),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-            ],
+            ),
           ),
-        ),
+          
+          // Instruction Box at the bottom
+          Container(
+            margin: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.grey[300]!),
+            ),
+            child: Column(
+              children: [
+                // Rotation icon
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF2323FF),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Icon(
+                    Icons.rotate_right,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                // Instruction text
+                Text(
+                  'Okay, start slowly rotating clockwise. Just a nice, smooth spin! Keep your arms slightly away from your body, and try to stay super still.',
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 14,
+                    color: Colors.black87,
+                    height: 1.4,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
