@@ -7,8 +7,16 @@ class ResultsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Scan Results')),
-      body: const Center(
-        child: Text('Results will be shown here.', style: TextStyle(fontSize: 20)),
+      body: SafeArea(
+        child: Center(
+          child: Flexible(
+            child: Text(
+              'Results will be shown here.',
+              style: const TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -47,7 +47,6 @@ class OnboardingWelcomeScreen extends StatelessWidget {
                     ),
                   ),
                 )
-
               ),
             ),
             Flexible(
@@ -57,53 +56,57 @@ class OnboardingWelcomeScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        style: GoogleFonts.nunitoSans(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                    Flexible(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          style: GoogleFonts.nunitoSans(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: 'Never Look Less Than\n',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic,
+                                foreground: Paint()..shader = const LinearGradient(
+                                  colors: <Color>[
+                                    Color(0xFF2323FF),
+                                    Color(0xFF151599),
+                                  ],
+                                ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                              ),
+                            ),
+                            const TextSpan(text: 'Your Best '), // This part is now plain
+                            TextSpan(
+                              text: 'In Your Outfit!',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic,
+                                foreground: Paint()..shader = const LinearGradient(
+                                  colors: <Color>[
+                                    Color(0xFF2323FF),
+                                    Color(0xFF151599),
+                                  ],
+                                ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                              ),
+                            ),
+                          ],
                         ),
-                        children: [
-                          TextSpan(
-                            text: 'Never Look Less Than\n',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic,
-                              foreground: Paint()..shader = const LinearGradient(
-                                colors: <Color>[
-                                  Color(0xFF2323FF),
-                                  Color(0xFF151599),
-                                ],
-                              ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
-                            ),
-                          ),
-                          const TextSpan(text: 'Your Best '), // This part is now plain
-                          TextSpan(
-                            text: 'In Your Outfit!',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.italic,
-                              foreground: Paint()..shader = const LinearGradient(
-                                colors: <Color>[
-                                  Color(0xFF2323FF),
-                                  Color(0xFF151599),
-                                ],
-                              ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
-                            ),
-                          ),
-                        ],
                       ),
                     ),
 
                     const SizedBox(height: 16),
-                    Text(
-                      'No more bad outfits. Get the right fit for your body and wear every look with confidence.',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.nunitoSans(
-                        fontSize: 16,
-                        color: Colors.black54,
+                    Flexible(
+                      child: Text(
+                        'No more bad outfits. Get the right fit for your body and wear every look with confidence.',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.nunitoSans(
+                          fontSize: 16,
+                          color: Colors.black54,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 32),

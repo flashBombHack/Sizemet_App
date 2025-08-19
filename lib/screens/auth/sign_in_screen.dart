@@ -140,20 +140,24 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 80,
                 ),
                 const SizedBox(height: 16),
-                Text(
-                  'Welcome Back',
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                Flexible(
+                  child: Text(
+                    'Welcome Back',
+                    style: GoogleFonts.nunitoSans(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  'Glad to have you back!',
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 16,
-                    color: Colors.black54,
+                Flexible(
+                  child: Text(
+                    'Glad to have you back!',
+                    style: GoogleFonts.nunitoSans(
+                      fontSize: 16,
+                      color: Colors.black54,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -224,9 +228,11 @@ class _SignInScreenState extends State<SignInScreen> {
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),
-                        Text(
-                          'Remember me',
-                          style: GoogleFonts.nunitoSans(fontSize: 14, color: Colors.black87),
+                        Flexible(
+                          child: Text(
+                            'Remember me',
+                            style: GoogleFonts.nunitoSans(fontSize: 14, color: Colors.black87),
+                          ),
                         ),
                       ],
                     ),
@@ -235,12 +241,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         // TODO: Implement forgot password logic
                         _showMessage(context, 'Forgot password clicked!');
                       },
-                      child: Text(
-                        'Forgot password?',
-                        style: GoogleFonts.nunitoSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xFF2323FF),
+                      child: Flexible(
+                        child: Text(
+                          'Forgot password?',
+                          style: GoogleFonts.nunitoSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF2323FF),
+                          ),
                         ),
                       ),
                     ),
@@ -300,31 +308,35 @@ class _SignInScreenState extends State<SignInScreen> {
                           width: 24,
                         ),
                         const SizedBox(width: 12),
-                        const Text('Sign In with Google'),
+                        Flexible(
+                          child: const Text('Sign In with Google'),
+                        ),
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: 24),
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 14,
-                      color: Colors.black87,
-                    ),
-                    children: [
-                      const TextSpan(text: 'Don\'t have an account? '),
-                      TextSpan(
-                        text: 'Sign up',
-                        style: GoogleFonts.nunitoSans(
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xFF2323FF),
-                        ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = widget.onSignUpClicked,
+                Flexible(
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: GoogleFonts.nunitoSans(
+                        fontSize: 14,
+                        color: Colors.black87,
                       ),
-                    ],
+                      children: [
+                        const TextSpan(text: 'Don\'t have an account? '),
+                        TextSpan(
+                          text: 'Sign up',
+                          style: GoogleFonts.nunitoSans(
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF2323FF),
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = widget.onSignUpClicked,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 32),

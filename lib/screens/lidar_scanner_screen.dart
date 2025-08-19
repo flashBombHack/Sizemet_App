@@ -111,11 +111,10 @@ class _LidarScannerScreenState extends State<LidarScannerScreen> {
       appBar: AppBar(
         title: const Text('Lidar Scanner'),
       ),
-      body: Center(
+      body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               if (defaultTargetPlatform == TargetPlatform.iOS)
                 Expanded(
@@ -127,57 +126,76 @@ class _LidarScannerScreenState extends State<LidarScannerScreen> {
                   ),
                 )
               else if (defaultTargetPlatform == TargetPlatform.android)
-                const Text('Android Platform View not implemented yet'),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _isScanning ? null : _startScan,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                  textStyle: const TextStyle(fontSize: 20),
+                const Expanded(
+                  child: Center(
+                    child: Text('Android Platform View not implemented yet'),
+                  ),
                 ),
-                child: const Text('Start Body Scan'),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: _isScanning ? null : _startScan,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                        textStyle: const TextStyle(fontSize: 16),
+                      ),
+                      child: const Text('Start Body Scan'),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  if (_isScanning)
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: _stopScan,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                          textStyle: const TextStyle(fontSize: 16),
+                        ),
+                        child: const Text('Stop Scan'),
+                      ),
+                    ),
+                ],
               ),
               const SizedBox(height: 20),
-              if (_isScanning)
-                ElevatedButton(
-                  onPressed: _stopScan,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                    textStyle: const TextStyle(fontSize: 20),
-                  ),
-                  child: const Text('Stop Scan'),
+              Flexible(
+                child: Text(
+                  'Status:  [${_statusMessage}',
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
                 ),
-              const SizedBox(height: 30),
-              Text(
-                'Status:  [${_statusMessage}',
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               LinearProgressIndicator(value: _progress),
               Text(' [${(_progress * 100).toStringAsFixed(1)}%'),
               const SizedBox(height: 20),
               if (_errorMessage.isNotEmpty)
-                Text(
-                  _errorMessage,
-                  style: const TextStyle(color: Colors.red, fontSize: 16),
-                  textAlign: TextAlign.center,
+                Flexible(
+                  child: Text(
+                    _errorMessage,
+                    style: const TextStyle(color: Colors.red, fontSize: 14),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               if (_usdzPath != null)
-                Column(
-                  children: [
-                    const Text(
-                      'Scan Result (USDZ):',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SelectableText(
-                      _usdzPath!,
-                      style: const TextStyle(fontSize: 16, color: Colors.blue),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                Flexible(
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Scan Result (USDZ):',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      SelectableText(
+                        _usdzPath!,
+                        style: const TextStyle(fontSize: 14, color: Colors.blue),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
             ],
           ),

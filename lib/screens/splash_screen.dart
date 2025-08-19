@@ -63,24 +63,28 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Apply FadeTransition to the logo
-            FadeTransition(
-              opacity: _fadeAnimation,
-              child: Image.asset(
-                'assets/images/app_logo.png',
-                width: 180, // Increased size
-                height: 180, // Increased size
-                // No placeholderBuilder needed for Image.asset as it handles errors natively
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.error, size: 180, color: Colors.red); // Show error icon if image fails
-                },
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Apply FadeTransition to the logo
+              Flexible(
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: Image.asset(
+                    'assets/images/app_logo.png',
+                    width: 180, // Increased size
+                    height: 180, // Increased size
+                    // No placeholderBuilder needed for Image.asset as it handles errors natively
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.error, size: 180, color: Colors.red); // Show error icon if image fails
+                    },
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

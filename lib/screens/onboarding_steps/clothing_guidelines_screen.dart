@@ -60,20 +60,24 @@ class _ClothingGuidelinesScreenState extends State<ClothingGuidelinesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Measurement Guidelines',
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              Flexible(
+                child: Text(
+                  'Measurement Guidelines',
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                'Please ensure to follow the below requirements',
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 16,
-                  color: Colors.black54,
+              Flexible(
+                child: Text(
+                  'Please ensure to follow the below requirements',
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 16,
+                    color: Colors.black54,
+                  ),
                 ),
               ),
               const SizedBox(height: 5),
@@ -84,7 +88,6 @@ class _ClothingGuidelinesScreenState extends State<ClothingGuidelinesScreen> {
 
               const SizedBox(height: 16),
               Row(
-
                 children: [
                   SvgPicture.asset(
                     'assets/images/onboarding_steps/audio_icon.svg',
@@ -93,24 +96,28 @@ class _ClothingGuidelinesScreenState extends State<ClothingGuidelinesScreen> {
                     colorFilter: const ColorFilter.mode(Color(0xFF2323FF), BlendMode.srcIn),
                   ),
                   const SizedBox(width: 8),
-                  Text(
-                    'Audio guidance: Ensure your volume is turned up.',
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 14,
-                      color: Colors.grey,
+                  Flexible(
+                    child: Text(
+                      'Audio guidance: Ensure your volume is turned up.',
+                      style: GoogleFonts.nunitoSans(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 32),
               // Moved this text to be part of the main column and not the SingleChildScrollView
-              Text(
-                'Wear fitted clothing (not loose or baggy!)',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              Flexible(
+                child: Text(
+                  'Wear fitted clothing (not loose or baggy!)',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               const SizedBox(height: 16),

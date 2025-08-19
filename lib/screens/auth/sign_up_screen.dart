@@ -95,234 +95,246 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
       body: Container(
         color: const Color(0xFFFBFBFD), // Added background color to the body content
-    child:    SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/app_logo.png',
-                width: 80,
-                height: 80,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Get Started!',
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/app_logo.png',
+                  width: 80,
+                  height: 80,
                 ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Please enter your details to get started',
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 16,
-                  color: Colors.black54,
+                const SizedBox(height: 16),
+                Flexible(
+                  child: Text(
+                    'Get Started!',
+                    style: GoogleFonts.nunitoSans(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 32),
-              TextField(
-                controller: _fullNameController,
-                decoration: InputDecoration(
-                  labelText: 'Full Name',
-                  hintText: 'Enter full name',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
+                const SizedBox(height: 8),
+                Flexible(
+                  child: Text(
+                    'Please enter your details to get started',
+                    style: GoogleFonts.nunitoSans(
+                      fontSize: 16,
+                      color: Colors.black54,
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFF2323FF), width: 2.0), // Focused border
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 ),
-                style: GoogleFonts.nunitoSans(),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: 'Email Address',
-                  hintText: 'Enter your email address',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
+                const SizedBox(height: 32),
+                TextField(
+                  controller: _fullNameController,
+                  decoration: InputDecoration(
+                    labelText: 'Full Name',
+                    hintText: 'Enter full name',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Color(0xFF2323FF), width: 2.0), // Focused border
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFF2323FF), width: 2.0), // Focused border
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                  style: GoogleFonts.nunitoSans(),
                 ),
-                style: GoogleFonts.nunitoSans(),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  hintText: 'Enter your password',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: 'Email Address',
+                    hintText: 'Enter your email address',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Color(0xFF2323FF), width: 2.0), // Focused border
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFF2323FF), width: 2.0), // Focused border
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                  style: GoogleFonts.nunitoSans(),
                 ),
-                style: GoogleFonts.nunitoSans(),
-              ),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: _rememberMe,
-                        onChanged: (bool? newValue) {
-                          setState(() {
-                            _rememberMe = newValue ?? false;
-                          });
-                        },
-                        activeColor: const Color(0xFF2323FF),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    hintText: 'Enter your password',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.grey, width: 1.0), // Added gray border
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Color(0xFF2323FF), width: 2.0), // Focused border
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                  ),
+                  style: GoogleFonts.nunitoSans(),
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: _rememberMe,
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              _rememberMe = newValue ?? false;
+                            });
+                          },
+                          activeColor: const Color(0xFF2323FF),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        Flexible(
+                          child: Text(
+                            'Remember me',
+                            style: GoogleFonts.nunitoSans(fontSize: 14, color: Colors.black87),
+                          ),
+                        ),
+                      ],
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        // TODO: Implement forgot password logic
+                        _showMessage(context, 'Forgot password clicked!');
+                      },
+                      child: Flexible(
+                        child: Text(
+                          'Forgot password?',
+                          style: GoogleFonts.nunitoSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF2323FF),
+                          ),
                         ),
                       ),
-                      Text(
-                        'Remember me',
-                        style: GoogleFonts.nunitoSans(fontSize: 14, color: Colors.black87),
-                      ),
-                    ],
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // TODO: Implement forgot password logic
-                      _showMessage(context, 'Forgot password clicked!');
-                    },
-                    child: Text(
-                      'Forgot password?',
-                      style: GoogleFonts.nunitoSans(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: const Color(0xFF2323FF),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _signUpWithEmailAndPassword,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF2323FF),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 18),
-                    textStyle: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
-                    foregroundColor: Colors.white,
-                  ),
-                  child: const Text('Sign up'),
-                ),
-              ),
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  const Expanded(child: Divider(color: Colors.grey)),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      'Or',
-                      style: GoogleFonts.nunitoSans(color: Colors.grey),
-                    ),
-                  ),
-                  const Expanded(child: Divider(color: Colors.grey)),
-                ],
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: _signInWithGoogle,
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.black87,
-                    side: const BorderSide(color: Colors.grey, width: 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    textStyle: GoogleFonts.nunitoSans(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/google_logo.png', // Assuming you have a Google logo SVG
-                        height: 24,
-                        width: 24,
-                      ),
-                      const SizedBox(width: 12),
-                      const Text('Sign in with Google'),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  style: GoogleFonts.nunitoSans(
-                    fontSize: 14,
-                    color: Colors.black87,
-                  ),
-                  children: [
-                    const TextSpan(text: 'Already have an account? '),
-                    TextSpan(
-                      text: 'Sign in',
-                      style: GoogleFonts.nunitoSans(
-                        fontWeight: FontWeight.w600,
-                        color: const Color(0xFF2323FF),
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = widget.onSignInClicked,
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 32),
-            ],
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _signUpWithEmailAndPassword,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF2323FF),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      textStyle: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text('Sign up'),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  children: [
+                    const Expanded(child: Divider(color: Colors.grey)),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        'Or',
+                        style: GoogleFonts.nunitoSans(color: Colors.grey),
+                      ),
+                    ),
+                    const Expanded(child: Divider(color: Colors.grey)),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: _signInWithGoogle,
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.black87,
+                      side: const BorderSide(color: Colors.grey, width: 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      textStyle: GoogleFonts.nunitoSans(fontSize: 16, fontWeight: FontWeight.w600),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/google_logo.png', // Assuming you have a Google logo SVG
+                          height: 24,
+                          width: 24,
+                        ),
+                        const SizedBox(width: 12),
+                        Flexible(
+                          child: const Text('Sign in with Google'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Flexible(
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: GoogleFonts.nunitoSans(
+                        fontSize: 14,
+                        color: Colors.black87,
+                      ),
+                      children: [
+                        const TextSpan(text: 'Already have an account? '),
+                        TextSpan(
+                          text: 'Sign in',
+                          style: GoogleFonts.nunitoSans(
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF2323FF),
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = widget.onSignInClicked,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
+              ],
+            ),
           ),
         ),
-      ),
       ),
     );
   }

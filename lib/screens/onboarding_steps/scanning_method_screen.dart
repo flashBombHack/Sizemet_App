@@ -86,22 +86,26 @@ class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                'Select Scanning Method',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              Flexible(
+                child: Text(
+                  'Select Scanning Method',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                'Pick the method that works best for your situation.',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 16,
-                  color: Colors.black54,
+              Flexible(
+                child: Text(
+                  'Pick the method that works best for your situation.',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 16,
+                    color: Colors.black54,
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
@@ -110,22 +114,29 @@ class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
                 totalSteps: widget.totalSteps,
               ),
               const SizedBox(height: 30),
-              _buildMethodOption(
-                context,
-                'Handheld Scanning',
-                'Have someone help you hold your phone.',
-                'assets/images/onboarding_steps/male_icon.svg',
-                'handheld',
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      _buildMethodOption(
+                        context,
+                        'Handheld Scanning',
+                        'Have someone help you hold your phone.',
+                        'assets/images/onboarding_steps/male_icon.svg',
+                        'handheld',
+                      ),
+                      const SizedBox(height: 16),
+                      _buildMethodOption(
+                        context,
+                        'Tripod/Stand Setup',
+                        'Place phone on a tripod or stable surface.',
+                        'assets/images/onboarding_steps/male_icon.svg',
+                        'tripod',
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              const SizedBox(height: 16),
-              _buildMethodOption(
-                context,
-                'Tripod/Stand Setup',
-                'Place phone on a tripod or stable surface.',
-                'assets/images/onboarding_steps/male_icon.svg',
-                'tripod',
-              ),
-              const Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24.0),
                 child: SizedBox(
@@ -190,22 +201,26 @@ class _ScanningMethodScreenState extends State<ScanningMethodScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.nunitoSans(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: isSelected ? const Color(0xFF2323FF) : Colors.black87,
+            Flexible(
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: isSelected ? const Color(0xFF2323FF) : Colors.black87,
+                ),
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              subtitle,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.nunitoSans(
-                fontSize: 14,
-                color: isSelected ? const Color(0xFF2323FF) : Colors.black54,
+            Flexible(
+              child: Text(
+                subtitle,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 14,
+                  color: isSelected ? const Color(0xFF2323FF) : Colors.black54,
+                ),
               ),
             ),
             const SizedBox(height: 24),

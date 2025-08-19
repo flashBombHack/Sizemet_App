@@ -32,39 +32,43 @@ class OnboardingResultScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 children: [
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: GoogleFonts.nunitoSans(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                      children: [
-                        const TextSpan(text: 'Welcome To '),
-                        TextSpan(
-                          text: 'Sizemet',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontStyle: FontStyle.italic,
-                            foreground: Paint()..shader = const LinearGradient(
-                              colors: <Color>[
-                                Color(0xFF2323FF),
-                                Color(0xFF151599),
-                              ],
-                            ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
-                          ),
+                  Flexible(
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: GoogleFonts.nunitoSans(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-                      ],
+                        children: [
+                          const TextSpan(text: 'Welcome To '),
+                          TextSpan(
+                            text: 'Sizemet',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic,
+                              foreground: Paint()..shader = const LinearGradient(
+                                colors: <Color>[
+                                  Color(0xFF2323FF),
+                                  Color(0xFF151599),
+                                ],
+                              ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Text(
-                    'Your one-stop solution for finding your perfect fit, shop smarter, look better, feel confident.',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 16,
-                      color: Colors.black54,
+                  Flexible(
+                    child: Text(
+                      'Your one-stop solution for finding your perfect fit, shop smarter, look better, feel confident.',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.nunitoSans(
+                        fontSize: 16,
+                        color: Colors.black54,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 32),

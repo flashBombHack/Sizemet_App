@@ -60,20 +60,24 @@ class _ColorGuidelinesScreenState extends State<ColorGuidelinesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Measurement Guidelines',
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              Flexible(
+                child: Text(
+                  'Measurement Guidelines',
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                'Please ensure to follow the below requirements',
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 16,
-                  color: Colors.black54,
+              Flexible(
+                child: Text(
+                  'Please ensure to follow the below requirements',
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 16,
+                    color: Colors.black54,
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -92,23 +96,27 @@ class _ColorGuidelinesScreenState extends State<ColorGuidelinesScreen> {
                     colorFilter: const ColorFilter.mode(Color(0xFF2323FF), BlendMode.srcIn),
                   ),
                   const SizedBox(width: 8),
-                  Text(
-                    'Audio guidance: Ensure your volume is turned up.',
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 14,
-                      color: Colors.grey,
+                  Flexible(
+                    child: Text(
+                      'Audio guidance: Ensure your volume is turned up.',
+                      style: GoogleFonts.nunitoSans(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 32),
-              Text(
-                'Clothing should be solid colors',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
+              Flexible(
+                child: Text(
+                  'Clothing should be solid colors',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               const SizedBox(height: 16),

@@ -66,22 +66,22 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 0),
-                  Text(
-                    'Select your gender',
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                  Flexible(
+                    child: Text(
+                      'Select your gender',
+                      style: GoogleFonts.nunitoSans(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -127,9 +127,11 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'Continue',
-                        style: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
+                      Flexible(
+                        child: Text(
+                          'Continue',
+                          style: GoogleFonts.nunitoSans(fontSize: 18, fontWeight: FontWeight.w600),
+                        ),
                       ),
                       const SizedBox(width: 8),
                       const Icon(Icons.arrow_forward, size: 24),
@@ -180,12 +182,14 @@ class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(
-                title,
-                style: GoogleFonts.nunitoSans(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: isSelected ? const Color(0xFF2323FF) : Colors.black87,
+              Flexible(
+                child: Text(
+                  title,
+                  style: GoogleFonts.nunitoSans(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: isSelected ? const Color(0xFF2323FF) : Colors.black87,
+                  ),
                 ),
               ),
             ],
