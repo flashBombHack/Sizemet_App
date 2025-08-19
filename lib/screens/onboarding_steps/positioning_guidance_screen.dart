@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:video_player/video_player.dart';
 import '../../widgets/onboarding_progress_bar.dart'; // Ensure this import is correct
+import '../lidar_scanner_screen.dart'; // Import the Lidar scanner screen
 
 class PositioningGuidanceScreen extends StatefulWidget {
   final VoidCallback onProceed;
@@ -69,6 +70,15 @@ class _PositioningGuidanceScreenState extends State<PositioningGuidanceScreen> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  // New method to navigate to Lidar scanner screen
+  void _navigateToLidarScanner() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const LidarScannerScreen(),
+      ),
+    );
   }
 
   @override
@@ -148,7 +158,7 @@ class _PositioningGuidanceScreenState extends State<PositioningGuidanceScreen> {
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton.icon(
-                    onPressed: widget.onProceed,
+                    onPressed: _navigateToLidarScanner, // Updated to navigate to Lidar scanner
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF2323FF),
                       shape: RoundedRectangleBorder(
